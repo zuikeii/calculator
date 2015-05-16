@@ -1,0 +1,813 @@
+package application;
+	
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+// x {} y = z;
+// {}には +, -, * , /
+public class Main extends Application {
+    
+	double x = 0.0;     // x
+	double x_int = 0.0; // xの整数部分
+	String x_dec = "";  // xの小数部分
+	double y = 0.0;     // y
+	double y_int = 0.0; // yの整数部分
+	String y_dec = "";  // yの小数部分
+	double z = 0.0;     // z
+	int oper;           // 計算の種類
+	boolean operation = false;  // 計算
+	boolean x_decimal = false;  //　xに小数点があるかどうか
+	boolean y_decimal = false;  //　yに小数点があるかどうか
+	boolean double_oper_check = false;  // 計算ボタンとを押し続けるかどうか
+	
+	public static final int CLEAR = 0;    // clear
+	public static final int PLUS = 1;     // +
+	public static final int MINUS = 2;    // - 
+	public static final int MULTIPLY = 3; // *
+	public static final int DIVISION = 4; // /
+	
+    @Override
+    public void start(Stage primaryStage) {
+    	
+    	//　初期化
+    	GridPane grid = new GridPane();
+    	grid.setAlignment(Pos.TOP_LEFT);
+    	grid.setHgap(10);
+    	grid.setVgap(10);
+    	grid.setPadding(new Insets(25, 25, 25, 25));
+    	
+    	final TextField result = new TextField();
+    	result.setPrefColumnCount(15);
+    	result.setFocusTraversable(false);
+    	result.setText("0.");
+    	
+    	// button1
+        Button btn1 = new Button();
+        btn1.setText("1");
+        btn1.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +1;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "1";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}
+            		
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +1;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "1";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}
+            		
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        // button2
+        Button btn2 = new Button();
+        btn2.setText("2");
+        btn2.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +2;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "2";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}
+            		
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +2;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "2";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}
+            		
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        // button3
+        Button btn3 = new Button();
+        btn3.setText("3");
+        btn3.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +3;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "3";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}
+            		
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +3;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "3";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}
+            		
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        // button4
+        Button btn4 = new Button();
+        btn4.setText("4");
+        btn4.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +4;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "4";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}
+            		
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +4;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "4";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}
+            		
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        // button5	
+        Button btn5 = new Button();
+        btn5.setText("5");
+        btn5.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +5;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "5";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}
+            		
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +5;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "5";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}
+            		
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        // button6
+        Button btn6 = new Button();
+        btn6.setText("6");
+        btn6.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +6;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "6";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}
+            		
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +6;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "6";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}
+            		
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        // button7
+        Button btn7 = new Button();
+        btn7.setText("7");
+        btn7.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +7;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "7";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}
+            		
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +7;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "7";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}
+            		
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        // button8
+        Button btn8 = new Button();
+        btn8.setText("8");
+        btn8.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +8;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "8";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}
+            		
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +8;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "8";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}
+            		
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        // button9
+        Button btn9 = new Button();
+        btn9.setText("9");
+        btn9.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +9;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "9";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}
+            		
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +9;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "9";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}
+            		
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        // button0
+        Button btn0 = new Button();
+        btn0.setText("0");
+        btn0.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		if(!x_decimal)
+            		{
+            			x_int = 10*x_int +0;
+    	            	x = x_int;
+    	            	result.setText(deletezero(x));
+            		}
+            		else
+            		{
+            			x_dec += "0";
+            			x = x_int + Double.valueOf("0." + x_dec);
+            			result.setText(deletezero(x_int) + x_dec);
+            		}	
+            	}
+            	else
+            	{
+            		if(!y_decimal)
+            		{
+            			y_int = 10*y_int +0;
+            			y = y_int;
+            			result.setText(deletezero(y));
+            		}
+            		else
+            		{
+            			y_dec += "0";
+            			y = y_int + Double.valueOf("0." + y_dec);
+            			result.setText(deletezero(y_int) + y_dec);
+            		}	
+            	}
+            	double_oper_check = false;
+            }
+        });
+        
+        Button btn00 = new Button();
+        btn00.setText("00");
+        btn00.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("00");
+            }
+        });
+        
+        // button +
+        Button btnplus = new Button();
+        btnplus.setText("+");
+        btnplus.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!double_oper_check) {
+            		double_oper_check = true;
+            	} else {
+            		oper = CLEAR;
+            	}
+            	switch(oper)
+            	{
+            	case PLUS:
+            		z = x + y;
+            		break;
+            	case MINUS:
+            		z = x - y;
+            		break;
+            	case MULTIPLY:
+            		z = x * y;
+            		break;
+            	case DIVISION:
+            		z = x / y;
+            		break; 	
+            	default:
+            		z = x + y;
+            	}
+            	if (check(z)) {
+            		result.setText(deletezero(z));
+            	} else {
+            		result.setText(Double.toString(z));
+            	}
+            	x = z;
+            	x_int = 0.0;
+            	x_dec = "";
+            	y = 0.0;
+            	y_int = 0.0;
+            	y_dec = "";
+                operation = true;
+                oper = PLUS;        
+            }
+        });
+        
+        // button -
+        Button btnminus = new Button();
+        btnminus.setText("-");
+        btnminus.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!double_oper_check) {
+            		double_oper_check = true;
+            	} else {
+            		oper = CLEAR;
+            	}
+            	switch(oper)
+            	{
+            	case PLUS:
+            		z = x + y;
+            		break;
+            	case MINUS:
+            		z = x - y;
+            		break;
+            	case MULTIPLY:
+            		z = x * y;
+            		break;
+            	case DIVISION:
+            		z = x / y;
+            		break; 	
+            	default:
+            		z = x - y;
+            	}
+            	if (check(z)) {
+            		result.setText(deletezero(z));
+            	} else {
+            		result.setText(Double.toString(z));
+            	}
+            	x = z;
+            	x_int = 0.0;
+            	x_dec = "";
+            	y = 0.0;
+            	y_int = 0.0;
+            	y_dec = "";
+                operation = true;
+                oper = MINUS;
+            }
+        });
+        
+        // button -
+        Button btnmultiply = new Button();
+        btnmultiply.setText("*");
+        btnmultiply.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!double_oper_check) {
+            		double_oper_check = true;
+            	} else {
+            		oper = CLEAR;
+            	}
+            	switch(oper)
+            	{
+            	case PLUS:
+            		z = x + y;
+            		break;
+            	case MINUS:
+            		z = x - y;
+            		break;
+            	case MULTIPLY:
+            		z = x * y;
+            		break;
+            	case DIVISION:
+            		z = x / y;
+            		break; 	
+            	default:
+            		y = 1.0;
+            		z = x * y;
+            	}
+            	if (check(z)) {
+            		result.setText(deletezero(z));
+            	} else {
+            		result.setText(Double.toString(z));
+            	}
+            	x = z;
+            	x_int = 0.0;
+            	x_dec = "";
+            	y = 0.0;
+            	y_int = 0.0;
+            	y_dec = "";
+                operation = true;
+                oper = MULTIPLY;
+            }
+        });
+    	
+        // button /
+        Button btndivision = new Button();
+        btndivision.setText("/");
+        btndivision.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!double_oper_check) {
+            		double_oper_check = true;
+            	} else {
+            		oper = CLEAR;
+            	}
+            	switch(oper)
+            	{
+            	case PLUS:
+            		z = x + y;
+            		break;
+            	case MINUS:
+            		z = x - y;
+            		break;
+            	case MULTIPLY:
+            		z = x * y;
+            		break;
+            	case DIVISION:
+            		z = x / y;
+            		break; 	
+            	default:
+            		y = 1.0;
+            		z = x / y;
+            	}
+            	if (check(z)) {
+            		result.setText(deletezero(z));
+            	} else {
+            		result.setText(Double.toString(z));
+            	}
+            	x = z;
+            	x_int = 0.0;
+            	x_dec = "";
+            	y = 0.0;
+            	y_int = 0.0;
+            	y_dec = "";
+                operation = true;
+                oper = DIVISION;
+            }
+        });
+        
+        // button =
+        Button btnequal = new Button();
+        btnequal.setText("=");
+        btnequal.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!double_oper_check) {
+            		double_oper_check = true;
+            	} else {
+            		oper = CLEAR;
+            	}
+            	switch(oper)
+            	{
+            	case PLUS:
+            		z = x + y;
+            		break;
+            	case MINUS:
+            		z = x - y;
+            		break;
+            	case MULTIPLY:
+            		z = x * y;
+            		break;
+            	case DIVISION:
+            		z = x / y;
+            		break; 	
+            	default:
+            		z = x;
+            	}
+            	if (check(z)) {
+            		result.setText(deletezero(z));
+            	} else {
+            		result.setText(Double.toString(z));
+            	}
+            	x_decimal = false;
+            	y_decimal = false;
+            	x = z;
+            	x_int = 0.0;
+            	x_dec = "";
+            	y = 0.0;
+            	y_int = 0.0;
+            	y_dec = "";
+            	operation = false;
+                oper = CLEAR;
+            }
+        });
+        
+        
+        // button .
+        Button btnpoint = new Button();
+        btnpoint.setText(".");
+        btnpoint.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	if (!operation)
+            	{
+            		x_decimal = true;
+            	}
+            	else
+            	{
+            		y_decimal = true;
+            	}
+            }
+        });
+        
+        // button C
+        Button btnclear = new Button();
+        btnclear.setText("C");
+        btnclear.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	x_decimal = false;
+            	y_decimal = false;
+            	double_oper_check = false;
+            	x = 0.0;
+            	x_int = 0.0;
+            	x_dec = "";
+            	y = 0.0;
+            	y_int = 0.0;
+            	y_dec = "";
+            	z = 0.0;
+            	operation = false;
+                oper = CLEAR;
+                result.setText("0.");
+            }
+        });
+        
+        grid.add(btnclear, 0, 0);
+        grid.add(btnplus, 12, 0);
+        
+        grid.add(btn1, 0, 4);
+        grid.add(btn2, 4, 4);
+        grid.add(btn3, 8, 4);
+        grid.add(btnminus, 12, 4);
+        
+        grid.add(btn4, 0, 8);
+        grid.add(btn5, 4, 8);
+        grid.add(btn6, 8, 8);
+        grid.add(btnmultiply, 12, 8);
+        
+        grid.add(btn7, 0, 12);
+        grid.add(btn8, 4, 12);
+        grid.add(btn9, 8, 12);
+        grid.add(btndivision, 12, 12);
+
+        grid.add(btn0, 0, 16);
+        grid.add(btn00, 4, 16);
+        grid.add(btnpoint, 8, 16);
+        grid.add(btnequal, 12, 16);
+        VBox vb = new VBox();
+        vb.getChildren().addAll(result,grid);
+        vb.setSpacing(10);
+        
+        Scene scene = new Scene(vb, 280, 350);
+        primaryStage.setTitle("電卓");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+ public static void main(String[] args) {
+        launch(args);
+    }
+ 
+ // XXXX.0ような整数、小数点以下の0を消す
+ private String deletezero(double input) {
+	 int length = Double.toString(input).length();
+	 return Double.toString(input).substring(0, length-1);
+ }
+ 
+ // 入力数字は整数かどうかを判断する
+ private boolean check(double input) {
+	 int length = Double.toString(input).length(); 
+	 if (Double.toString(input).substring(length-1, length).equals("0")) {
+		 return true;
+	 } else {
+		 return false;
+	 } 
+ }
+ 
+}
